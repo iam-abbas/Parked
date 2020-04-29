@@ -31,7 +31,7 @@ export default class RegisterScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.greetingTop}>{`Hey there,`}</Text>
+        <Text style={styles.greetingTop}>{`Welcome,`}</Text>
         <Text style={styles.greeting}>{`Sign up to get started.`}</Text>
 
         <View style={styles.errorMessage}>
@@ -95,9 +95,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
+    justifyContent: "center"
+
   },
   greetingTop: {
-    marginTop: 72,
     fontSize: 24,
     fontWeight: "600",
     paddingLeft: 30,

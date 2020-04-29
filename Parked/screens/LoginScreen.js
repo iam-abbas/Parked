@@ -11,6 +11,8 @@ import {
   LayoutAnimation,
 } from "react-native";
 import * as firebase from "firebase";
+import { Ionicons } from "@expo/vector-icons";
+
 
 export default class LoginScreen extends React.Component {
   state = {
@@ -34,9 +36,9 @@ export default class LoginScreen extends React.Component {
     return (
       <ScrollView contentContainerStyle={{ backgroundColor: "#ff", flexGrow: 1 }}>
         <View style={styles.container}>
-          <StatusBar barStyle="light-content"></StatusBar>
-          <Text style={styles.greetingTop}>{`Welcome,`}</Text>
-          <Text style={styles.greeting}>{`Sign in to continue.`}</Text>
+          <Text style={styles.headerTitle}><Ionicons name="ios-pin" color={"#FEA02F"} size={42} style={{paddingRight: 10}}/> Parked</Text>
+          {/* <Text style={styles.greetingTop}>{`Welcome,`}</Text> */}
+          {/* <Text style={styles.greeting}>{`Sign in to continue.`}</Text> */}
           <View style={styles.errorMessage}>
             {this.state.errorMessage && (
               <Text style={styles.error}>{this.state.errorMessage}</Text>
@@ -91,9 +93,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
+    justifyContent: "center"
+  },
+  headerTitle: {
+    marginTop: 70,
+    justifyContent: "center",
+    fontSize: 46,
+    fontWeight: "600",
+    textAlign: "center",
+    alignContent: "center",
+    color: "#003F5A",
+    zIndex: 999,
   },
   greetingTop: {
-    marginTop: 72,
+    marginTop: 32,
     fontSize: 24,
     fontWeight: "600",
     paddingLeft: 30,
