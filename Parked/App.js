@@ -2,12 +2,13 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { Ionicons } from "@expo/vector-icons";
-import AntdIcon from "@ant-design/icons-react";
+import { Ionicons, FontAwesome, Entypo } from "@expo/vector-icons";
 import LoadingScreen from "./screens/LoadingScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 
+
+import addScreen from "./screens/addScreen";
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
 
@@ -36,6 +37,14 @@ const AppTabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Ionicons name="ios-pin" size={22} color={tintColor} />
+        ),
+      },
+    },
+    addPark: {
+      screen: addScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Entypo name="map" size={22} color={tintColor} />
         ),
       },
     },

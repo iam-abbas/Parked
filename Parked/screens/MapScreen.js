@@ -25,42 +25,26 @@ export default class MapScreen extends React.Component {
       activeHrs: false,
       carOption: "small",
       hours: 2,
-      dataSource: [
-        {
-          id: 1,
-          name: "Alex Mercer",
-          rating: 4.8,
-          duration: 5,
-          price: 7,
-          time: "Now",
-          pts: 240,
-          addr: "1277 Hearst Avenue",
-          distance: 5,
-          lat: 37.872428,
-          lng: -122.280819,
-          desc:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc nunc, laoreet ut risus vel, aliquam auctor diam. Ut egestas arcu in nibh luctus aliquam. Phasellus vitae tortor nec est posuere aliquam vitae ac dolor.",
-        },
-        {
-          id: 2,
-          name: "Ezio",
-          rating: 3.8,
-          duration: 2,
-          price: 12,
-          time: "In 2h",
-          pts: 300,
-          distance: 2,
-          addr: "1427 Hearst Avenue",
-          lat: 37.871284,
-          lng:  -122.286776,
-          desc:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc nunc, laoreet ut risus vel, aliquam auctor diam. Ut egestas arcu in nibh luctus aliquam. Phasellus vitae tortor nec est posuere aliquam vitae ac dolor.",
-        },
-      ],
+      dataSource: [],
     };
   }
   handleTab = (tabKey) => {
     this.setState({ carOption: tabKey });
+  };
+
+  getParkings = () => {
+    const myFirebaseRef = firebase.database().ref("parkinglots");
+    myFirebaseRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const mydata = [];
+        Object.keys(data).forEach((row, i) => {
+          mydata.push(data[row]);
+          mydata[i].id = i + 1;
+        });
+        this.setState({ dataSource: mydata });
+      }
+    });
   };
   state = {
     email: "",
@@ -71,6 +55,8 @@ export default class MapScreen extends React.Component {
     const { email, displayName } = firebase.auth().currentUser;
 
     this.setState({ email, displayName });
+    this.getParkings();
+    // console.log(this.state.dataSource);
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -99,7 +85,10 @@ export default class MapScreen extends React.Component {
     } else if (this.state.carOption == "large") {
       mdl = 3;
     }
-    return mdl * hrs * 0.8 + price;
+
+    let prc = ((mdl*1.2) * (hrs * 0.8 ) + parseInt(price))*1.2;
+    var finalPrice = (Math.round((prc + Number.EPSILON) * 100) / 100);
+    return finalPrice;
   };
 
   renderHours(id) {
@@ -144,7 +133,7 @@ export default class MapScreen extends React.Component {
                   color: "#6ebcf0",
                 }}
               >
-                ${price}
+                {this.calcPrice(price)}
               </Text>
             </View>
             <Text style={styles.pts}>+{item.pts} POINTS</Text>
@@ -249,7 +238,7 @@ export default class MapScreen extends React.Component {
               {this.calcPrice(activeModal.price)}
             </Text>
             <Text style={styles.infotext}>
-              <FontAwesome5 name={"car"} size={14} /> {activeModal.distance}KM
+              <FontAwesome5 name={"car"} size={14} /> 1KM
             </Text>
           </View>
           <Text style={styles.inputTitle}>Select Vehicle Model: </Text>
@@ -267,10 +256,18 @@ export default class MapScreen extends React.Component {
               marginVertical: 20,
               textAlign: "center",
               justifyContent: "center",
-
             }}
           >
-            <Text style={{alignSelf: "center", color: "#FFF", fontSize: 18, fontWeight: "600"}}>PAY ${this.calcPrice(activeModal.price)}</Text>
+            <Text
+              style={{
+                alignSelf: "center",
+                color: "#FFF",
+                fontSize: 18,
+                fontWeight: "600",
+              }}
+            >
+              PAY ${this.calcPrice(activeModal.price)}
+            </Text>
           </TouchableOpacity>
         </View>
       </Modal>
@@ -285,7 +282,7 @@ export default class MapScreen extends React.Component {
           latitude: dealer.lat,
           longitude: dealer.lng,
         }}
-        title={dealer.name+" - $"+dealer.price}
+        title={dealer.name + " - $" + dealer.price}
       />
     ));
 

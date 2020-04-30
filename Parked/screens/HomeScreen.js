@@ -21,6 +21,29 @@ export default class HomeScreen extends React.Component {
     displayName: "",
   };
 
+  addParking = (data) => {
+    const myFirebaseRef = firebase.database().ref("parkinglots");
+    myFirebaseRef
+      .push({
+        name: data.name,
+        rating: data.rating,
+        duration: data.duration,
+        price: data.price,
+        time: data.time,
+        pts: data.pts,
+        addr: data.addr,
+        lat: data.lat,
+        lng: data.lng,
+        desc: data.desc,
+      })
+      .then(() => {
+        console.log("Success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   componentDidMount() {
     const { email, displayName } = firebase.auth().currentUser;
 
@@ -122,8 +145,19 @@ export default class HomeScreen extends React.Component {
           </Text>
           <View style={styles.event}>
             <View style={styles.date}>
-              <Text style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}>1</Text>
-              <Text style={{ color: "#FF7657", fontSize: 12, fontWeight: "600", opacity: 0.6 }}>
+              <Text
+                style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}
+              >
+                1
+              </Text>
+              <Text
+                style={{
+                  color: "#FF7657",
+                  fontSize: 12,
+                  fontWeight: "600",
+                  opacity: 0.6,
+                }}
+              >
                 May
               </Text>
             </View>
@@ -133,8 +167,19 @@ export default class HomeScreen extends React.Component {
           </View>
           <View style={styles.event}>
             <View style={styles.date}>
-              <Text style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}>5</Text>
-              <Text style={{ color: "#FF7657", fontSize: 12, fontWeight: "600", opacity: 0.6 }}>
+              <Text
+                style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}
+              >
+                5
+              </Text>
+              <Text
+                style={{
+                  color: "#FF7657",
+                  fontSize: 12,
+                  fontWeight: "600",
+                  opacity: 0.6,
+                }}
+              >
                 May
               </Text>
             </View>
@@ -144,8 +189,19 @@ export default class HomeScreen extends React.Component {
           </View>
           <View style={styles.event}>
             <View style={styles.date}>
-              <Text style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}>12</Text>
-              <Text style={{ color: "#FF7657", fontSize: 12, fontWeight: "600", opacity: 0.6 }}>
+              <Text
+                style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}
+              >
+                12
+              </Text>
+              <Text
+                style={{
+                  color: "#FF7657",
+                  fontSize: 12,
+                  fontWeight: "600",
+                  opacity: 0.6,
+                }}
+              >
                 May
               </Text>
             </View>
@@ -155,8 +211,19 @@ export default class HomeScreen extends React.Component {
           </View>
           <View style={styles.event}>
             <View style={styles.date}>
-              <Text style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}>24</Text>
-              <Text style={{ color: "#FF7657", fontSize: 12, fontWeight: "600", opacity: 0.6 }}>
+              <Text
+                style={{ color: "#FF7657", fontSize: 26, fontWeight: "700" }}
+              >
+                24
+              </Text>
+              <Text
+                style={{
+                  color: "#FF7657",
+                  fontSize: 12,
+                  fontWeight: "600",
+                  opacity: 0.6,
+                }}
+              >
                 May
               </Text>
             </View>

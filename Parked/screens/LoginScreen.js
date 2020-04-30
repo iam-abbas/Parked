@@ -37,7 +37,7 @@ export default class LoginScreen extends React.Component {
       <ScrollView contentContainerStyle={{ backgroundColor: "#ff", flexGrow: 1 }}>
         <View style={styles.container}>
           <Text style={styles.headerTitle}><Ionicons name="ios-pin" color={"#FEA02F"} size={42} style={{paddingRight: 10}}/> Parked</Text>
-          {/* <Text style={styles.greetingTop}>{`Welcome,`}</Text> */}
+          {/* <Text style={styles.greetingTop}>{`Entering Loginscreen,`}</Text> */}
           {/* <Text style={styles.greeting}>{`Sign in to continue.`}</Text> */}
           <View style={styles.errorMessage}>
             {this.state.errorMessage && (
