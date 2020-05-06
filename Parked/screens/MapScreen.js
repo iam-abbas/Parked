@@ -56,7 +56,6 @@ export default class MapScreen extends React.Component {
 
     this.setState({ email, displayName });
     this.getParkings();
-    // console.log(this.state.dataSource);
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -253,7 +252,7 @@ export default class MapScreen extends React.Component {
               borderRadius: 10,
               color: "#FFF",
               alignSelf: "center",
-              marginVertical: 20,
+              marginTop: 20,
               textAlign: "center",
               justifyContent: "center",
             }}
@@ -269,6 +268,19 @@ export default class MapScreen extends React.Component {
               PAY ${this.calcPrice(activeModal.price)}
             </Text>
           </TouchableOpacity>
+          <Text
+              style={{
+                alignSelf: "center",
+                padding: 20,
+                fontSize: 13,
+                fontStyle: "italic",
+                fontWeight: "400",
+                marginBottom: 30,
+                textAlign: "center",
+              }}
+            >
+              <Text style={{fontWeight: "700"}}>2</Text> more people are viewing this parking lot right now.
+            </Text>
         </View>
       </Modal>
     );

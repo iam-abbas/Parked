@@ -136,16 +136,14 @@ export default class addScreen extends React.Component {
               style={{
                 alignSelf: "center",
                 padding: 20,
-                fontStyle: "italic",
                 fontSize: 13,
+                fontStyle: "italic",
                 fontWeight: "400",
                 marginBottom: 30,
                 textAlign: "center",
-                opacity: 0.7,
               }}
             >
-              “I never thought I would be making more money using my parking lot
-              than my full-time job.”
+              There are currently <Text style={{fontWeight: "700"}}>12 people</Text> looking for a parking spot in Berkeley right now.
             </Text>
             <View>
               <Text style={styles.inputTitle}>Enter Address</Text>

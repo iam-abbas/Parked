@@ -9,6 +9,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 
 
 import addScreen from "./screens/addScreen";
+import revenueScreen from "./screens/revenueScreen";
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
 
@@ -45,6 +46,14 @@ const AppTabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Entypo name="map" size={22} color={tintColor} />
+        ),
+      },
+    },
+    Revenue: {
+      screen: revenueScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="pie-chart" size={22} color={tintColor} />
         ),
       },
     },
