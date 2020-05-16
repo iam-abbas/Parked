@@ -4,6 +4,6 @@
 
 ### How to run?
 ```
-$ cd parked
+$ cd Parked
 $ expo start
 ```
